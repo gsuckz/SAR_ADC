@@ -166,10 +166,9 @@ N 400 140 450 140 {
 lab=CLK}
 N 670 100 830 100 {lab=V}
 N 930 50 930 140 {lab=#net1}
-N 610 140 930 140 {lab=#net1}
 C {symbols/pfet_03v3.sym} 650 -320 0 1 {name=M1
 L=0.28u
-W=4u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -197,7 +196,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 900 -80 0 0 {name=M3
 L=0.28u
-W=4u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -225,7 +224,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 650 -80 0 1 {name=M5
 L=0.28u
-W=4u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -239,7 +238,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 900 -320 0 0 {name=M6
 L=0.28u
-W=4u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -289,4 +288,6 @@ C {devices/iopin.sym} 400 140 0 1 {name=p6 lab=CLK
 }
 C {devices/iopin.sym} 760 -30 0 0 {name=p7 lab=GND
 }
-C {inv.sym} 510 140 0 0 {name=x1 cl=0.28u wp=0.44u wn=0.22u wx=2u}
+C {inv.sym} 510 140 0 0 {name=x1 cl=0.28u wp=0.44u wn=0.22u wx=.22u}
+C {inv.sym} 670 140 0 0 {name=x2 cl=0.28u wp=0.44u wn=0.22u wx=10u}
+C {inv.sym} 830 140 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u wx=10u}

@@ -101,7 +101,7 @@ C {devices/iopin.sym} 4090 -3430 0 1 {name=p8 lab=Vinn}
 C {devices/iopin.sym} 5410 -3480 0 0 {name=p3 lab=OUT}
 C {SR_nor.sym} 5290 -3400 0 0 {name=X1}
 C {inv.sym} 4910 -3480 0 0 {name=x2 cl=0.28u wp=0.44u wn=0.22u
-wx=0.22u}
+wx=1u}
 C {inv.sym} 4750 -3480 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u
 wx=0.22u}
 C {devices/iopin.sym} 4370 -3330 0 0 {name=p4 lab=clk}
@@ -110,6 +110,6 @@ C {devices/iopin.sym} 4390 -3440 0 0 {name=p6 lab=vpn}
 C {inv.sym} 4750 -3330 0 0 {name=x4 cl=0.28u wp=0.44u wn=0.22u
 wx=0.22u}
 C {inv.sym} 4910 -3330 0 0 {name=x5 cl=0.28u wp=0.44u wn=0.22u
-wx=0.22u}
+wx=1u}
 C {strongarm.sym} 4470 -3380 0 0 {name=X6}
 C {preamp.sym} 4100 -3360 0 0 {name=X7}

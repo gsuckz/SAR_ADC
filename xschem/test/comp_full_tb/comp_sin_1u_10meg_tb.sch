@@ -96,7 +96,7 @@ N 510 -1030 510 -880 {lab=#net4}
 N 510 -880 520 -880 {lab=#net4}
 C {devices/vsource.sym} 160 -300 0 0 {name=V1 value="PULSE(-600u 600u 0 100p 100p 40n 80n)"}
 C {devices/vsource.sym} 240 -300 0 0 {name=V2 value="PULSE(0.1 3.2 0 100p 100p 80n 160n)"}
-C {devices/vsource.sym} 310 -300 0 0 {name=V3 value="PULSE(0 3.3 0 100p 100p 4n 8n)"}
+C {devices/vsource.sym} 310 -300 0 0 {name=V3 value="PULSE(0 3.3 0 100p 100p 5n 10n)"}
 C {devices/gnd.sym} 910 -660 0 0 {name=l1 lab=GND
 wx=1u}
 C {devices/gnd.sym} 240 -270 0 0 {name=l3 lab=GND}
@@ -129,11 +129,11 @@ plot \{vindiff * 100000\} outcomp \{clk/3.3\}
 *plot vindiff
 *plot outcomp vin1 vin2
 *plot i(v5) \{clk/3300\} i(v6)
-plot vpap vpan
+plot vpap vpan vin2
 *plot vq
 plot i(v9) i(v8)
-plot \{vpap - vpan\}  
-*plot vsap vsan 
+plot \{vpap - vpan\}  \{clk/1000\}
+plot vsap vsan 
 *plot vpap
 *plot vpan
 .endc"}

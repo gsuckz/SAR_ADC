@@ -56,6 +56,13 @@ N 190 -680 190 -350 {lab=clk}
 N 190 -680 390 -680 {lab=clk}
 N 400 -390 400 -260 {lab=Vin2}
 N 400 -260 930 -260 {lab=Vin2}
+N 340 -600 460 -600 {lab=Vout1}
+N 630 -610 760 -610 {lab=Vout2}
+N 760 -550 800 -550 {lab=GND}
+N 800 -550 800 -440 {lab=GND}
+N 800 -440 820 -440 {lab=GND}
+N 320 -540 320 -440 {lab=GND}
+N 320 -540 340 -540 {lab=GND}
 C {symbols/nfet_03v3.sym} 550 -350 0 0 {name=M27
 L=.28u
 W=.22u
@@ -72,7 +79,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 435 -440 0 0 {name=M24
 L=.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -86,7 +93,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 655 -440 0 1 {name=M25
 L=.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -137,7 +144,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 860 -440 0 1 {name=M3
 L=.28u
-W=4u
+W=5u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -151,7 +158,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 290 -440 0 0 {name=M4
 L=.28u
-W=4u
+W=5u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -163,3 +170,13 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
+C {devices/capa.sym} 340 -570 0 0 {name=C1
+m=1
+value=50f
+footprint=1206
+device="ceramic capacitor"}
+C {devices/capa.sym} 760 -580 0 0 {name=C2
+m=1
+value=50f
+footprint=1206
+device="ceramic capacitor"}

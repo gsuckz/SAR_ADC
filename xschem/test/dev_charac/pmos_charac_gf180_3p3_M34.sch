@@ -1,5 +1,4 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -10,11 +9,7 @@ lab=g1}
 N 1180 -290 1180 -230 {
 lab=d1}
 N 1180 -360 1260 -360 {
-lab=d1}
-N 1260 -360 1260 -290 {
-lab=d1}
-N 1180 -290 1260 -290 {
-lab=d1}
+lab=vsup}
 N 1180 -530 1180 -400 {
 lab=vsup}
 N 1180 -530 1330 -530 {
@@ -23,6 +18,8 @@ N 1180 -330 1180 -290 {
 lab=d1}
 N 1180 -400 1180 -390 {
 lab=vsup}
+N 1260 -450 1260 -360 {lab=vsup}
+N 1180 -450 1260 -450 {lab=vsup}
 C {devices/code_shown.sym} 1390 -570 0 0 {name=NGSPICE
 only_toplevel=true
 value="
@@ -59,6 +56,7 @@ let a = gmn/idn
 setscale a
 plot idn/W
 plot vov2
+plot vthn
 wrdata /foss/designs/personal/sw_comp_gf180/comparator/dev_charac/data/data_idnW_gmnidn_M34.dat idn/W
 wrdata /foss/designs/personal/sw_comp_gf180/comparator/dev_charac/data/data_vov_gmnidn_M34.dat vov2
 
@@ -69,9 +67,9 @@ C {devices/ipin.sym} 1090 -360 0 0 {name=p1 lab=g1}
 C {devices/iopin.sym} 1180 -230 0 0 {name=p2 lab=d1}
 C {devices/iopin.sym} 1330 -530 0 0 {name=p3 lab=vsup}
 C {symbols/pfet_03v3.sym} 1160 -360 0 0 {name=M1
-L=0.7u
+L=1u
 W=5u
-nf=5
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"

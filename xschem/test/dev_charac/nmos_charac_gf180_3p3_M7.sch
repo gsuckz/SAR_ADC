@@ -1,5 +1,4 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -48,7 +47,7 @@ let vov1 = v(g1) - vthn
 let vov2 = 2*idn/gmn
 
 *plot idn
-*plot idn vs vov1 
+plot idn vs vov1 
 *plot idn vs vov2 
 *plot vov2
 *plot gmn vs vov2
@@ -59,6 +58,7 @@ let a = gmn/idn
 setscale a
 plot idn/W
 plot vov2
+plot vthn
 
 *wrdata /foss/designs/personal/sw_comp_gf180/comparator/dev_charac/data/data_idnW_gmnidn_M7.dat idn/W
 *wrdata /foss/designs/personal/sw_comp_gf180/comparator/dev_charac/data/data_vov_gmnidn_M7.dat vov2

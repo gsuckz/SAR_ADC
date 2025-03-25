@@ -104,13 +104,13 @@ C {devices/lab_pin.sym} -510 -260 0 0 {name=p41 sig_type=std_logic lab=vdd}
 C {inv.sym} -350 -220 0 0 {name=x9 cl=0.28u wp=0.44u wn=.22u}
 C {devices/lab_pin.sym} -350 -180 0 0 {name=p48 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -350 -260 0 0 {name=p49 sig_type=std_logic lab=vdd}
-C {inv.sym} -190 -220 0 0 {name=x10 cl=0.28u wp=0.44u wn=1u}
+C {inv.sym} -190 -220 0 0 {name=x10 cl=0.28u wp=0.44u wn=4u}
 C {devices/lab_pin.sym} -190 -180 0 0 {name=p50 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -190 -260 0 0 {name=p53 sig_type=std_logic lab=vdd}
 C {inv.sym} -510 -360 0 0 {name=x12 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -510 -320 0 0 {name=p56 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -510 -400 0 0 {name=p57 sig_type=std_logic lab=vdd}
-C {inv.sym} -350 -360 0 0 {name=x13 cl=0.28u wp=0.44u wn=1u}
+C {inv.sym} -350 -360 0 0 {name=x13 cl=0.28u wp=0.44u wn=4u}
 C {devices/lab_pin.sym} -350 -320 0 0 {name=p58 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -350 -400 0 0 {name=p59 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} -390 10 3 1 {name=p17 sig_type=std_logic lab=vdd}
