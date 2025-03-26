@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -221,7 +222,7 @@ C {devices/code_shown.sym} 670 -1020 0 0 {name=SPICE1 only_toplevel=false value=
 .control
 save all
 run
-*plot \{(vin1-vin2)/abs(vin1-vin2)\} \{(vo1-vo2)\} clk
+plot \{(vin1-vin2)/abs(vin1-vin2)\} \{(vo1-vo2)\} clk
 plot \{(vin1-vin2)/abs(vin1-vin2)\} \{(vpreamp1-vpreamp2)\} clk
 *plot \{vo11-vo1\} \{vo22-vo2\} clk
 *plot vpreamp1 vo1 sareset
@@ -487,7 +488,7 @@ C {devices/lab_wire.sym} 1760 -320 0 0 {name=p18 sig_type=std_logic lab=sareset}
 C {devices/lab_wire.sym} 1200 -610 0 0 {name=p19 sig_type=std_logic lab=vo11
 }
 C {devices/lab_wire.sym} 1490 -610 0 1 {name=p20 sig_type=std_logic lab=vo22}
-C {devices/vsource.sym} 90 -770 0 0 {name=V1 value="PULSE(-100u 100u 0 100p 100p 40n 80n)"}
+C {devices/vsource.sym} 90 -770 0 0 {name=V1 value="PULSE(-1 1 0 100p 100p 40n 80n)"}
 C {devices/vsource.sym} 170 -770 0 0 {name=V2 value="PULSE(0.1 3.2 0 100p 100p 150n 300n)"}
 C {devices/gnd.sym} 170 -740 0 0 {name=l3 lab=GND}
 C {devices/lab_wire.sym} 90 -810 0 0 {name=p1 sig_type=std_logic lab=Vin1}
