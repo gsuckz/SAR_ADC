@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -145,11 +146,9 @@ N 810 70 810 100 {lab=V}
 N 790 70 810 70 {lab=V}
 N 790 130 890 140 {lab=Y}
 N 880 350 890 140 {lab=Y}
-N 850 380 880 380 {lab=#net6}
-N 850 380 850 410 {lab=#net6}
+N 850 380 880 380 {lab=GND}
 N 850 410 880 410 {lab=#net6}
-N -20 360 -0 360 {lab=#net6}
-N 0 360 0 390 {lab=#net6}
+N -20 360 -0 360 {lab=GND}
 N -20 390 0 390 {lab=#net6}
 N 140 100 140 140 {lab=X}
 N 100 140 140 140 {lab=X}
@@ -331,7 +330,7 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {inv.sym} 1660 390 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u wx=.22u}
+C {inv.sym} 1660 390 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u wx=4u}
 C {symbols/nfet_03v3.sym} 250 370 0 0 {name=M27
 L=.28u
 W=.22u
@@ -390,16 +389,6 @@ sa=0 sb=0 sd=0
 model=pfet_03v3
 spiceprefix=X
 }
-C {devices/capa.sym} 120 350 0 0 {name=C1
-m=1
-value=2f
-footprint=1206
-device="ceramic capacitor"}
-C {devices/capa.sym} 700 350 0 0 {name=C2
-m=1
-value=2f
-footprint=1206
-device="ceramic capacitor"}
 C {devices/lab_wire.sym} 1930 -100 0 0 {name=p4 lab=V
 W=3u}
 C {devices/gnd.sym} 1660 430 0 0 {name=l1 lab=GND}
@@ -419,7 +408,7 @@ W=3u}
 C {devices/lab_wire.sym} 2260 -20 0 0 {name=p15 sig_type=std_logic lab=vo1
 }
 C {devices/lab_wire.sym} 1600 -10 0 1 {name=p17 sig_type=std_logic lab=vo2}
-C {devices/vsource.sym} 30 -170 0 0 {name=V1 value="PULSE(-1m 1m 0 \{0.4*period\} \{0.4*period\} \{4*period\} \{8*period\})"}
+C {devices/vsource.sym} 30 -170 0 0 {name=V1 value="PULSE(-10m 10m 0 \{0.4*period\} \{0.4*period\} \{4*period\} \{8*period\})"}
 C {devices/vsource.sym} 110 -170 0 0 {name=V2 value=3.2}
 C {devices/gnd.sym} 110 -140 0 0 {name=l3 lab=GND}
 C {devices/lab_wire.sym} 30 -210 0 0 {name=p1 sig_type=std_logic lab=Vin1}
@@ -446,8 +435,8 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {devices/gnd.sym} 120 380 0 0 {name=l7 lab=GND}
-C {devices/gnd.sym} 700 380 0 0 {name=l8 lab=GND}
+C {devices/gnd.sym} 0 360 0 0 {name=l7 lab=GND}
+C {devices/gnd.sym} 850 380 0 0 {name=l8 lab=GND}
 C {devices/lab_wire.sym} 360 200 0 0 {name=p11 sig_type=std_logic lab=clk
 }
 C {devices/gnd.sym} 2010 50 0 0 {name=l9 lab=GND}
