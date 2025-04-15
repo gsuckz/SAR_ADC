@@ -1,5 +1,4 @@
-v {xschem version=3.4.4 file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -62,14 +61,11 @@ C {devices/lab_pin.sym} -250 -50 2 1 {name=p12 sig_type=std_logic lab=d3}
 C {devices/lab_pin.sym} -250 -70 2 1 {name=p13 sig_type=std_logic lab=d2}
 C {devices/lab_pin.sym} -250 -90 2 1 {name=p14 sig_type=std_logic lab=d1}
 C {devices/lab_pin.sym} -250 -110 2 1 {name=p15 sig_type=std_logic lab=d0}
-C {devices/code_shown.sym} -1145 -125 0 0 {name=NGSPICE
+C {devices/code_shown.sym} -1225 -95 0 0 {name=NGSPICE
 only_toplevel=false
 value="
-.param period=1500n
+.param period=10n
 .param stoptime=\{32*period\}
-
-.tran \{0.01*stoptime\} \{stoptime\} uic
-
 vsmp sample 0 PULSE(0 3.3 0 10p 10p \{period/2\} \{period\} 1)
 vd0 d0 0 PULSE( 3.3 0 \{1.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd1 d1 0 PULSE( 3.3 0 \{2.2*period\} 10p 10p \{period/2\} \{period\} 1)
@@ -83,6 +79,7 @@ vd8 d8 0 PULSE( 3.3  0 \{9.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd9 d9 0 PULSE( 3.3 0 \{10.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd10 d10 0 PULSE( 3.3 0 \{11.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd11 d11 0 PULSE( 3.3 0 \{12.2*period\} 10p 10p \{period/2\} \{period\} 1)
+.tran \{0.01*stoptime\} \{stoptime\} uic
 .control
 
 save all
@@ -105,7 +102,7 @@ value="
 "
 spice_ignore=false}
 C {devices/lab_pin.sym} 10 0 0 1 {name=p16 sig_type=std_logic lab=out}
-C {inv.sym} 310 -180 1 0 {name=x3 cl=0.28u wp=0.44u wn=.22u Wx=1u}
+C {inv.sym} 310 -180 1 0 {name=x3 cl=0.28u wp=0.44u wn=.22u Wx=10u}
 C {devices/gnd.sym} 270 -180 0 0 {name=l5 lab=GND}
 C {devices/lab_pin.sym} 170 -240 0 0 {name=p18 sig_type=std_logic lab=sample}
 C {inv.sym} -350 -340 0 0 {name=x14 cl=0.28u wp=0.44u wn=.22u}

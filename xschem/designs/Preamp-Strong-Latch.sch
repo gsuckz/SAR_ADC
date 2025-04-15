@@ -94,21 +94,24 @@ N 4080 -3390 4090 -3390 {
 lab=clk}
 N 4170 -3190 4180 -3190 {
 lab=GND}
+N 3900 -3240 3900 -3190 {lab=GND}
+N 3900 -3190 4190 -3190 {lab=GND}
+N 3900 -3520 3900 -3320 {lab=V}
+N 3900 -3520 4170 -3520 {lab=V}
+N 4000 -3280 4080 -3280 {lab=clk}
+N 4690 -3480 4850 -3480 {lab=#net1}
+N 4690 -3330 4850 -3330 {lab=#net4}
 C {devices/iopin.sym} 4530 -3560 0 0 {name=p1 lab=V}
 C {devices/iopin.sym} 4530 -3260 0 0 {name=p2 lab=GND}
-C {devices/iopin.sym} 4090 -3480 0 1 {name=p7 lab=Vinp}
-C {devices/iopin.sym} 4090 -3430 0 1 {name=p8 lab=Vinn}
+C {devices/iopin.sym} 4090 -3430 0 1 {name=p7 lab=Vinp}
+C {devices/iopin.sym} 4090 -3480 0 1 {name=p8 lab=Vinn}
 C {devices/iopin.sym} 5410 -3480 0 0 {name=p3 lab=OUT}
 C {SR_nor.sym} 5290 -3400 0 0 {name=X1}
 C {inv.sym} 4910 -3480 0 0 {name=x2 cl=0.28u wp=0.44u wn=0.22u
 wx=1u}
-C {inv.sym} 4750 -3480 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u
-wx=0.22u}
-C {devices/iopin.sym} 4370 -3330 0 0 {name=p4 lab=clk}
+C {devices/iopin.sym} 4000 -3280 0 0 {name=p4 lab=clk}
 C {devices/iopin.sym} 4380 -3500 0 0 {name=p5 lab=vpp}
 C {devices/iopin.sym} 4390 -3440 0 0 {name=p6 lab=vpn}
-C {inv.sym} 4750 -3330 0 0 {name=x4 cl=0.28u wp=0.44u wn=0.22u
-wx=0.22u}
 C {inv.sym} 4910 -3330 0 0 {name=x5 cl=0.28u wp=0.44u wn=0.22u
 wx=1u}
 C {strongarm.sym} 4470 -3380 0 0 {name=X6}

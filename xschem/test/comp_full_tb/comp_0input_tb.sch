@@ -1,5 +1,4 @@
-v {xschem version=3.4.6RC file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -142,7 +141,7 @@ C {devices/vsource.sym} -300 -900 0 0 {name=V4 value=3.3}
 C {devices/gnd.sym} -300 -870 0 0 {name=l5 lab=GND}
 C {devices/lab_wire.sym} -300 -940 0 0 {name=p7 sig_type=std_logic lab=V
 }
-C {devices/code_shown.sym} 1130 -1190 0 0 {name=SPICE1 only_toplevel=false value="
+C {devices/code_shown.sym} 260 -1200 0 0 {name=SPICE1 only_toplevel=false value="
 
 .param period=50n
 .param stoptime=\{100*period\}

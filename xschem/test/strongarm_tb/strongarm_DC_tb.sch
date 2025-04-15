@@ -1,5 +1,4 @@
-v {xschem version=3.4.6RC file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -162,20 +161,20 @@ C {devices/lab_wire.sym} 260 -220 0 0 {name=p7 sig_type=std_logic lab=V
 }
 C {devices/code_shown.sym} 780 -560 0 0 {name=SPICE1 only_toplevel=false value="
 
-.param period=50n
+.param period=100n
 .param stoptime=\{100*period\}
-.tran \{0.01*stoptime\} \{stoptime\} uic 
+.tran \{0.05*stoptime\} \{stoptime\} uic 
 .control
 save all @m.XM1.m0[p] 
 run
 plot @m.XM1.m0[p]
 plot \{(vpreamp1-vpreamp2)\} \{(vo1-vo2)\} clk
 *plot \{(vin1-vin2)/abs(vin1-vin2)\} \{(vpreamp1-vpreamp2)\} clk
-*plot \{vo11-vo1\} \{vo22-vo2\} clk
-*plot vo10 vo20
+plot \{vo11-vo1\} \{vo22-vo2\} clk
+plot vo10 vo20
 *plot vpreamp1 vo1 sareset
 *plot \{vo2-vo1\} \{1000*(vin1-vin2)\} clk
-*plot vo1 vo2 clk
+plot vo1 vo2 clk
 *plot \{(vin1-vin2)*10\} \{(vpreamp1-vpreamp2)\} \{clk /330\} \{vin2/(100)\}
 *plot \{(vin1-vin2)*1000\} vpreamp1 vpreamp2 \{clk\} \{vin2\}
 plot \{(vpreamp1-vpreamp2)\} \{(vin1-vin2)\} \{clk / 3300\}
@@ -193,11 +192,13 @@ format="tcleval(  @value  )"
 value="
 .include $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/design.ngspice
 .lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice typical
+.lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_statistical
+.lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
 "
 spice_ignore=false}
 C {symbols/pfet_03v3.sym} 1800 -70 0 1 {name=M1
 L=0.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -211,7 +212,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 1580 -70 0 0 {name=M2
 L=0.28u
-W=2u
+W=5u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -225,7 +226,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 2050 170 0 0 {name=M3
 L=0.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -239,7 +240,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 2340 -70 0 1 {name=M4
 L=0.28u
-W=2u
+W=5u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -253,7 +254,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 1800 170 0 1 {name=M5
 L=0.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -267,7 +268,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 2050 -70 0 0 {name=M6
 L=0.28u
-W=4u
+W=8u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -281,8 +282,8 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 1760 40 0 0 {name=M7
 L=0.28u
-W=4u
-nf=1
+W=12u
+nf=10
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -295,8 +296,8 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 2090 50 0 1 {name=M8
 L=0.28u
-W=4u
-nf=1
+W=12u
+nf=10
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -307,10 +308,10 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {inv.sym} 1660 390 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u wx=5u}
+C {inv.sym} 1660 390 0 0 {name=x3 cl=0.28u wp=0.44u wn=0.22u wx=15u}
 C {symbols/nfet_03v3.sym} 250 370 0 0 {name=M27
 L=.28u
-W=2u
+W=4u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -326,7 +327,7 @@ C {devices/lab_wire.sym} 400 170 0 0 {name=p21 lab=V
 W=3u}
 C {symbols/pfet_03v3.sym} 380 200 2 1 {name=M9
 L=.28u
-W=4u
+W=12u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -340,8 +341,8 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 550 280 0 1 {name=M11
 L=.28u
-W=8u
-nf=1
+W=12u
+nf=10
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -354,8 +355,8 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 250 280 0 0 {name=M12
 L=.28u
-W=8u
-nf=1
+W=12u
+nf=10
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -386,7 +387,7 @@ C {devices/lab_wire.sym} 2260 -20 0 0 {name=p15 sig_type=std_logic lab=vo1
 }
 C {devices/lab_wire.sym} 1600 -10 0 1 {name=p17 sig_type=std_logic lab=vo2}
 C {devices/vsource.sym} 30 -170 0 0 {name=V1 value="PULSE(-.8m .8m 0 \{0.4*period\} \{0.4*period\} \{8*period\} \{16*period\})"}
-C {devices/vsource.sym} 110 -170 0 0 {name=V2 value=0.1}
+C {devices/vsource.sym} 110 -170 0 0 {name=V2 value=2.4}
 C {devices/gnd.sym} 110 -140 0 0 {name=l3 lab=GND}
 C {devices/lab_wire.sym} 30 -210 0 0 {name=p1 sig_type=std_logic lab=Vin1}
 C {devices/lab_wire.sym} 110 -210 0 0 {name=p2 sig_type=std_logic lab=Vin2}
@@ -400,7 +401,7 @@ C {devices/lab_wire.sym} 700 250 0 1 {name=p23 sig_type=std_logic lab=vpreamp2
 C {devices/gnd.sym} 1920 250 0 0 {name=l6 lab=GND}
 C {symbols/nfet_03v3.sym} 550 370 0 1 {name=M10
 L=.28u
-W=2u
+W=4u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -424,16 +425,6 @@ C {devices/lab_wire.sym} 530 330 0 0 {name=p27 sig_type=std_logic lab=Vx2
 }
 C {devices/lab_wire.sym} 270 330 0 0 {name=p28 sig_type=std_logic lab=Vx1
 }
-C {devices/capa.sym} 2190 90 0 0 {name=C1
-m=1
-value=20f
-footprint=1206
-device="ceramic capacitor"}
-C {devices/capa.sym} 1690 80 0 0 {name=C2
-m=1
-value=20f
-footprint=1206
-device="ceramic capacitor"}
 C {devices/gnd.sym} 1690 110 0 0 {name=l14 lab=GND}
 C {devices/gnd.sym} 2190 120 0 0 {name=l15 lab=GND}
 C {devices/lab_wire.sym} 400 200 0 0 {name=p22 lab=V}
@@ -443,3 +434,15 @@ C {devices/lab_wire.sym} 270 280 0 0 {name=p26 lab=V
 W=3u}
 C {devices/gnd.sym} 270 370 0 0 {name=l7 lab=GND}
 C {devices/gnd.sym} 530 370 0 0 {name=l8 lab=GND}
+C {symbols/cap_mim_2f0fF.sym} 2190 90 0 0 {name=C1
+W=1e-6
+L=1e-6
+model=cap_mim_2f0fF
+spiceprefix=X
+m=1}
+C {symbols/cap_mim_2f0fF.sym} 1690 80 0 0 {name=C2
+W=1e-6
+L=1e-6
+model=cap_mim_2f0fF
+spiceprefix=X
+m=1}

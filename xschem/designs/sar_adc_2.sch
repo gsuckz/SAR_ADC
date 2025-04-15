@@ -43,7 +43,7 @@ lab=compout}
 N 470 0 480 0 {
 lab=compout}
 N -60 0 320 -0 {
-lab=#net1}
+lab=clk}
 N 420 50 420 90 {
 lab=vpp}
 N 440 50 440 90 {
@@ -52,8 +52,6 @@ N 440 40 440 50 {
 lab=vpn}
 N 420 40 420 50 {
 lab=vpp}
-N -60 -70 -60 -0 {
-lab=#net1}
 N -420 -110 -420 10 {lab=vinp}
 N -360 -110 -360 10 {lab=compp}
 N -450 120 -450 240 {lab=vinn}
@@ -62,8 +60,10 @@ N -350 -70 -330 -70 {lab=compp}
 N -360 -70 -350 -70 {lab=compp}
 N -390 120 -330 120 {lab=compn}
 N -330 110 -330 120 {lab=compn}
-C {cdac.sym} 130 160 1 1 {name=x1 cu=100}
-C {cdac.sym} 130 -160 1 0 {name=x2 cu=100}
+N -220 -70 -220 0 {lab=clk}
+N -220 0 -50 0 {lab=clk}
+C {cdac.sym} 130 160 1 1 {name=x1 cu=56}
+C {cdac.sym} 130 -160 1 0 {name=x2 cu=56}
 C {devices/ipin.sym} -420 -70 0 0 {name=p2 lab=vinp}
 C {Preamp-Strong-Latch.sym} 340 30 0 0 {name=X5}
 C {sar_logic.sym} 520 250 0 0 {name=X6}
@@ -89,8 +89,6 @@ C {devices/opin.sym} 470 -50 3 0 {name=p9 sig_type=std_logic lab=compout}
 C {devices/opin.sym} 620 270 2 1 {name=p10 sig_type=std_logic lab=eoc}
 C {devices/lab_pin.sym} -10 -180 0 0 {name=p11 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -10 180 0 0 {name=p13 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} -10 140 0 0 {name=p12 sig_type=std_logic lab=vdd}
-C {devices/lab_pin.sym} -10 -140 0 0 {name=p18 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} 390 50 0 0 {name=p20 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} 390 -60 0 0 {name=p21 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} -390 -150 0 1 {name=p22 sig_type=std_logic lab=sample}
@@ -98,19 +96,19 @@ C {devices/lab_pin.sym} -570 -300 0 0 {name=p42 sig_type=std_logic lab=samplex}
 C {devices/lab_pin.sym} -250 -360 0 1 {name=p47 sig_type=std_logic lab=sample}
 C {devices/lab_pin.sym} -90 -220 2 0 {name=p23 sig_type=std_logic lab=nsample}
 C {devices/lab_pin.sym} -390 50 0 1 {name=p24 sig_type=std_logic lab=nsample}
-C {inv.sym} -510 -220 0 0 {name=x8 cl=0.28u wp=0.44u wn=0.22u}
+C {inv.sym} -510 -220 0 0 {name=x8 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -510 -180 0 0 {name=p40 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -510 -260 0 0 {name=p41 sig_type=std_logic lab=vdd}
-C {inv.sym} -350 -220 0 0 {name=x9 cl=0.28u wp=0.44u wn=.22u}
+C {inv.sym} -350 -220 0 0 {name=x9 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -350 -180 0 0 {name=p48 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -350 -260 0 0 {name=p49 sig_type=std_logic lab=vdd}
-C {inv.sym} -190 -220 0 0 {name=x10 cl=0.28u wp=0.44u wn=4u}
+C {inv.sym} -190 -220 0 0 {name=x10 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -190 -180 0 0 {name=p50 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -190 -260 0 0 {name=p53 sig_type=std_logic lab=vdd}
 C {inv.sym} -510 -360 0 0 {name=x12 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -510 -320 0 0 {name=p56 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -510 -400 0 0 {name=p57 sig_type=std_logic lab=vdd}
-C {inv.sym} -350 -360 0 0 {name=x13 cl=0.28u wp=0.44u wn=4u}
+C {inv.sym} -350 -360 0 0 {name=x13 cl=0.28u wp=0.44u wn=1u}
 C {devices/lab_pin.sym} -350 -320 0 0 {name=p58 sig_type=std_logic lab=gnd}
 C {devices/lab_pin.sym} -350 -400 0 0 {name=p59 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} -390 10 3 1 {name=p17 sig_type=std_logic lab=vdd}
@@ -152,16 +150,13 @@ C {devices/lab_pin.sym} 220 -280 1 0 {name=l11 sig_type=std_logic lab=d[10]b}
 C {devices/lab_pin.sym} 240 -280 1 0 {name=l12 sig_type=std_logic lab=d[11]b}
 C {devices/lab_pin.sym} -390 -110 3 0 {name=p14 sig_type=std_logic lab=gnd}
 C {devices/opin.sym} 500 180 3 0 {name=p38 sig_type=std_logic lab=samplex}
-C {inv.sym} -160 -70 0 0 {name=x7 cl=0.28u wp=0.44u wn=10u wx=10u}
-C {devices/lab_pin.sym} -160 -30 0 0 {name=p43 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} -160 -110 0 0 {name=p44 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} -220 -70 0 0 {name=p16 sig_type=std_logic lab=clk}
 C {devices/opin.sym} 420 90 1 0 {name=p45 sig_type=std_logic lab=vpp}
 C {devices/opin.sym} 440 90 1 0 {name=p46 sig_type=std_logic lab=vpn}
 C {symbols/nfet_03v3.sym} -390 -130 1 0 {name=M1
 L=0.28u
-W=2u
-nf=1
+W=4u
+nf=5
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -174,8 +169,8 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} -390 30 3 0 {name=M2
 L=0.28u
-W=2u
-nf=1
+W=4u
+nf=5
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -192,8 +187,8 @@ C {devices/lab_pin.sym} -420 240 3 1 {name=p19 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} -420 120 3 0 {name=p37 sig_type=std_logic lab=gnd}
 C {symbols/nfet_03v3.sym} -420 100 1 0 {name=M3
 L=0.28u
-W=2u
-nf=1
+W=4u
+nf=5
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -206,8 +201,8 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} -420 260 3 0 {name=M4
 L=0.28u
-W=2u
-nf=1
+W=4u
+nf=5
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
@@ -219,3 +214,5 @@ model=pfet_03v3
 spiceprefix=X
 }
 C {devices/ipin.sym} -450 200 0 0 {name=p39 lab=vinn}
+C {devices/lab_pin.sym} -10 -140 0 0 {name=p12 sig_type=std_logic lab=vdd}
+C {devices/lab_pin.sym} -10 140 0 0 {name=p18 sig_type=std_logic lab=vdd}

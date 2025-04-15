@@ -11,8 +11,8 @@ lab=gnd}
 N 70 300 70 340 {
 lab=vin}
 C {symbols/cap_mim_2f0fF.sym} 70 -50 0 0 {name=C1
-W=\{sqrt(CW/2.2)*1u\}
-L=\{sqrt(CL/2.2)*1u\}
+W=\{sqrt(CW/2)*1u\}
+L=\{sqrt(CL/2)*1u\}
 model=cap_mim_2f0fF
 m=1}
 C {devices/ipin.sym} 30 160 0 0 {name=p3 lab=vdd}

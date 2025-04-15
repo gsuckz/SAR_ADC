@@ -1,5 +1,4 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -68,20 +67,6 @@ plot vov2
 " }
 C {devices/ipin.sym} 1090 -360 0 0 {name=p1 lab=g1}
 C {devices/iopin.sym} 1330 -530 0 0 {name=p3 lab=d1}
-C {symbols/nfet_03v3.sym} 1160 -360 0 0 {name=M1
-L=0.3u
-W=5u
-nf=5
-m=1
-ad="'int((nf+1)/2) * W/nf * 0.18u'"
-pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
-as="'int((nf+2)/2) * W/nf * 0.18u'"
-ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
-nrd="'0.18u / W'" nrs="'0.18u / W'"
-sa=0 sb=0 sd=0
-model=pfet_03v3
-spiceprefix=X
-}
 C {devices/code.sym} 1018.75 -531.875 0 0 {name=MODELS
 only_toplevel=true
 place=header
@@ -98,3 +83,17 @@ value="
 
 "}
 C {devices/gnd.sym} 1180 -230 0 0 {name=l1 lab=GND}
+C {symbols/nfet_06v0_nvt.sym} 1160 -360 0 0 {name=M1
+L=1.80u
+W=0.80u
+nf=1
+m=1
+ad="'int((nf+1)/2) * W/nf * 0.18u'"
+pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
+as="'int((nf+2)/2) * W/nf * 0.18u'"
+ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
+nrd="'0.18u / W'" nrs="'0.18u / W'"
+sa=0 sb=0 sd=0
+model=nfet_06v0
+spiceprefix=X
+}

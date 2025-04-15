@@ -12,14 +12,14 @@ C {sar_adc_2.sym} -120 -290 0 0 {name=x1}
 C {devices/code_shown.sym} -1065 -65 0 0 {name=NGSPICE
 only_toplevel=false
 value="
-.param period=120n
+.param period=20n
 .param stoptime=\{48*period\}
 *.param stoptime=.2u
 
-vclk clk 0 PULSE(0 3.3 \{0*period\} 10ps 10ps \{period/2\} \{period\})
-vr  rst 0 PULSE(0 3.3 \{0*period\}  10ps 10ps \{period/2\} \{13*period\} 1)
+vclk clk 0 PULSE(0 3.3 \{0*period\} \{period*0.05\} \{period*0.05\} \{period/2\} \{period\})
+vr  rst 0 PULSE(0 3.3 \{0*period\}  \{period*0.05\} \{period*0.05\} \{period/2\} \{13*period\} 1)
 
-.tran \{0.01*stoptime\} \{stoptime\} uic
+.tran \{0.05*stoptime\} \{stoptime\} uic
 
 .control
 save all
@@ -49,7 +49,7 @@ plot compn compp compout  eoc \{vx - vpn + 4\}  \{(clk/3.3) + 6\}
 *plot compout
 .endc
 "}
-C {devices/vsource.sym} -240 -300 0 1 {name=VIN value=1}
+C {devices/vsource.sym} -240 -300 0 1 {name=VIN value=100m}
 C {devices/ipin.sym} -145 -410 1 0 {name=p1 lab=rst}
 C {devices/ipin.sym} -120 -410 1 0 {name=p2 lab=clk}
 C {devices/opin.sym} 15 -240 2 1 {name=p3 lab=d0}
@@ -90,7 +90,7 @@ C {devices/opin.sym} -30 -190 1 0 {name=p18 lab=eoc}
 C {devices/gnd.sym} 130 -250 0 0 {name=l6 lab=GND}
 C {devices/gnd.sym} -240 -210 0 0 {name=l7 lab=GND}
 C {devices/gnd.sym} -30 -410 0 0 {name=l2 lab=GND}
-C {devices/vsource.sym} -240 -240 0 1 {name=VIN2 value=2}
+C {devices/vsource.sym} -240 -240 0 1 {name=VIN2 value=1.7}
 C {devices/lab_pin.sym} -240 -270 2 1 {name=l4 lab=vinn}
 C {devices/lab_pin.sym} 30 -400 3 1 {name=l8 lab=sample}
 C {devices/lab_pin.sym} 60 -400 3 1 {name=l9 lab=vx}
