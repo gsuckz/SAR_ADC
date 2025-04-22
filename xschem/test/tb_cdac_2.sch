@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -18,31 +19,20 @@ N 60 -80 90 -80 {
 lab=vdd}
 N 230 -80 310 -80 {
 lab=#net1}
-N 170 -240 310 -240 {
-lab=sample}
 N 350 -180 350 180 {
 lab=vdd}
 N -110 180 350 180 {
 lab=vdd}
 N 170 -240 170 -160 {
 lab=sample}
-N -490 -390 -490 -350 {
-lab=sample}
-N -490 -340 -420 -340 {
-lab=sample}
-N -490 -360 -490 -340 {
-lab=sample}
-N -420 -340 -410 -340 {
-lab=sample}
-N -250 -340 390 -340 {
-lab=#net2}
 N 20 -90 170 -140 {
 lab=out}
 N 10 0 20 -90 {
 lab=out}
-C {cdac.sym} -130 0 0 0 {name=x1 cu=5u}
+N 170 -240 310 -240 {lab=sample}
+C {cdac.sym} -130 0 0 0 {name=x1 cu=56}
 C {devices/gnd.sym} -150 140 0 0 {name=l1 lab=GND}
-C {devices/vsource.sym} -170 240 0 0 {name=V1 value=1.65 savecurrent=false}
+C {devices/vsource.sym} -170 240 0 0 {name=V1 value=3.3 savecurrent=false}
 C {devices/vsource.sym} -110 240 0 0 {name=V2 value=3.3 savecurrent=false}
 C {devices/gnd.sym} -140 270 0 0 {name=l2 lab=GND}
 C {bootstrap_sw.sym} 110 -180 0 0 {name=x2}
@@ -64,8 +54,8 @@ C {devices/lab_pin.sym} -250 -110 2 1 {name=p15 sig_type=std_logic lab=d0}
 C {devices/code_shown.sym} -1225 -95 0 0 {name=NGSPICE
 only_toplevel=false
 value="
-.param period=10n
-.param stoptime=\{32*period\}
+.param period=100n
+.param stoptime=\{15*period\}
 vsmp sample 0 PULSE(0 3.3 0 10p 10p \{period/2\} \{period\} 1)
 vd0 d0 0 PULSE( 3.3 0 \{1.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd1 d1 0 PULSE( 3.3 0 \{2.2*period\} 10p 10p \{period/2\} \{period\} 1)
@@ -79,7 +69,7 @@ vd8 d8 0 PULSE( 3.3  0 \{9.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd9 d9 0 PULSE( 3.3 0 \{10.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd10 d10 0 PULSE( 3.3 0 \{11.2*period\} 10p 10p \{period/2\} \{period\} 1)
 vd11 d11 0 PULSE( 3.3 0 \{12.2*period\} 10p 10p \{period/2\} \{period\} 1)
-.tran \{0.01*stoptime\} \{stoptime\} uic
+.tran \{0.001*stoptime\} \{stoptime\} uic
 .control
 
 save all
@@ -87,7 +77,7 @@ run
 *plot sample sampled 
 plot \{vcm-ip\} 
 plot \{(ip-out)\} 
-plot sample d0 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 out 1.65 \{sample/10\} \{sampled/10\}
+plot sample d0 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 out 1.65 \{sample/10\} 
 plot sample out
 .endc
 "}
@@ -102,27 +92,7 @@ value="
 "
 spice_ignore=false}
 C {devices/lab_pin.sym} 10 0 0 1 {name=p16 sig_type=std_logic lab=out}
-C {inv.sym} 310 -180 1 0 {name=x3 cl=0.28u wp=0.44u wn=.22u Wx=10u}
+C {inv.sym} 310 -180 1 0 {name=x3 cl=0.28u wp=0.44u wn=.22u Wx=1u mx=2}
 C {devices/gnd.sym} 270 -180 0 0 {name=l5 lab=GND}
 C {devices/lab_pin.sym} 170 -240 0 0 {name=p18 sig_type=std_logic lab=sample}
-C {inv.sym} -350 -340 0 0 {name=x14 cl=0.28u wp=0.44u wn=.22u}
-C {devices/lab_pin.sym} -350 -300 0 0 {name=p43 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} -350 -380 0 0 {name=p60 sig_type=std_logic lab=vdd}
-C {inv.sym} 450 -340 0 0 {name=x19 cl=0.28u wp=0.44u wn=12u}
-C {devices/lab_pin.sym} 450 -300 0 0 {name=p68 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} 450 -380 0 0 {name=p69 sig_type=std_logic lab=vdd}
-C {devices/lab_pin.sym} -490 -380 0 1 {name=p70 sig_type=std_logic lab=sample}
-C {devices/lab_pin.sym} 870 -340 0 1 {name=p71 sig_type=std_logic lab=sampled}
 C {devices/lab_pin.sym} 350 -20 0 0 {name=p17 sig_type=std_logic lab=vdd}
-C {devices/lab_pin.sym} 230 -280 0 0 {name=p19 sig_type=std_logic lab=gnd}
-C {devices/capa.sym} 230 -310 0 0 {name=C1
-m=1
-value=.2p
-footprint=1206
-device="ceramic capacitor"}
-C {inv.sym} 610 -340 0 0 {name=x4 cl=0.28u wp=0.44u wn=.22u}
-C {devices/lab_pin.sym} 610 -300 0 0 {name=p20 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} 610 -380 0 0 {name=p21 sig_type=std_logic lab=vdd}
-C {inv.sym} 770 -340 0 0 {name=x5 cl=0.28u wp=0.44u wn=12u}
-C {devices/lab_pin.sym} 770 -300 0 0 {name=p22 sig_type=std_logic lab=gnd}
-C {devices/lab_pin.sym} 770 -380 0 0 {name=p23 sig_type=std_logic lab=vdd}

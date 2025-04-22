@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -86,7 +87,7 @@ C {devices/lab_wire.sym} 1730 -850 0 0 {name=p7 sig_type=std_logic lab=V
 }
 C {devices/code_shown.sym} 2810 -735 0 0 {name=SPICE1 only_toplevel=false value="
 
-.param period=100n
+.param period=50n
 .param stoptime=\{100*period\}
 .tran \{0.00001*stoptime\} \{stoptime\} uic 
 .control
