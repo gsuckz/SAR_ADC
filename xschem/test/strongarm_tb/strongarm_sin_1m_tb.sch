@@ -46,13 +46,9 @@ N 1740 -290 1780 -290 {lab=GND}
 N 1770 -50 1780 -290 {lab=GND}
 N 2590 -280 2690 -280 {lab=GND}
 N 2590 -280 2590 -50 {lab=GND}
-N 3790 -740 3890 -740 {lab=#net6}
-N 3890 -740 3895 -670 {lab=#net6}
-N 3785 -535 3895 -610 {lab=#net7}
-N 3160 -270 3470 -740 {lab=saout}
-N 3160 -210 3465 -535 {lab=#net8}
-N 3465 -535 3625 -535 {lab=#net8}
-N 3470 -740 3630 -740 {lab=saout}
+N 3540 -360 3640 -360 {lab=#net6}
+N 3640 -360 3645 -290 {lab=#net6}
+N 3535 -155 3645 -230 {lab=#net7}
 N 1750 -260 1880 -260 {lab=#net2}
 N 2490 -170 2690 -170 {lab=#net3}
 N 1750 -260 1750 -110 {lab=#net2}
@@ -74,6 +70,12 @@ N 2690 -250 2690 -170 {lab=#net3}
 N 1920 -270 2030 -270 {lab=Vout1}
 N 1920 -350 1920 -270 {lab=Vout1}
 N 2450 -360 2450 -260 {lab=Vout2}
+N 3160 -270 3380 -270 {lab=saout}
+N 3380 -360 3380 -270 {lab=saout}
+N 3160 -220 3370 -220 {lab=#net8}
+N 3160 -220 3160 -210 {lab=#net8}
+N 3375 -220 3375 -155 {lab=#net8}
+N 3370 -220 3375 -220 {lab=#net8}
 C {devices/vsource.sym} 1650 -810 0 0 {name=V3 value="PULSE(0 3.3 0 \{0.05*period\} \{0.05*period\} \{0.5*period\} \{1*period\})"}
 C {devices/gnd.sym} 1650 -780 0 0 {name=l4 lab=GND}
 C {devices/lab_wire.sym} 1650 -850 0 0 {name=p3 sig_type=std_logic lab=clk
@@ -91,8 +93,11 @@ C {devices/code_shown.sym} 2810 -735 0 0 {name=SPICE1 only_toplevel=false value=
 save all @m.XM1.m0[p] 
 run
 plot \{vin1 - vin2\} \{vout1 - vout2\} \{clk/3300\} \{vin2/1000\}
+plot \{1000*(vin1 - vin2)\} \{vout1 - vout2\} \{clk/330\} \{vin2\}
 plot vout1 vout2
 plot outc \{1000*(vin1-vin2)\}
+
+
 plot saout
 .endc"}
 C {devices/code.sym} 1400 -1070 0 0 {name=TT_MODELS 
@@ -106,7 +111,7 @@ value="
 "
 spice_ignore=false}
 C {devices/vsource.sym} 1500 -800 0 0 {name=V1 value="PULSE(-.5m .5m 0 \{0.4*period\} \{0.4*period\} \{8*period\} \{16*period\})"}
-C {devices/vsource.sym} 1580 -800 0 0 {name=V2 value="PULSE(100m 3.2 0 \{0.4*period\} \{0.4*period\} \{32*period\} \{64*period\})"}
+C {devices/vsource.sym} 1580 -800 0 0 {name=V2 value="PULSE(0 3.3 0 \{0.4*period\} \{0.4*period\} \{32*period\} \{64*period\})"}
 C {devices/gnd.sym} 1580 -770 0 0 {name=l3 lab=GND}
 C {devices/lab_wire.sym} 1500 -840 0 0 {name=p1 sig_type=std_logic lab=Vin1}
 C {devices/lab_wire.sym} 1580 -840 0 0 {name=p2 sig_type=std_logic lab=Vin2}
@@ -328,20 +333,20 @@ C {devices/lab_wire.sym} 2390 -290 0 1 {name=p8 sig_type=std_logic lab=Vin2}
 C {devices/lab_wire.sym} 2030 -200 0 0 {name=p9 sig_type=std_logic lab=Vout1}
 C {devices/lab_wire.sym} 2380 -200 0 1 {name=p10 sig_type=std_logic lab=Vout2}
 C {devices/gnd.sym} 2205 -50 0 0 {name=l1 lab=GND}
-C {SR_nor.sym} 3935 -590 0 0 {name=X1}
-C {devices/lab_wire.sym} 3975 -710 0 0 {name=p11 lab=V
+C {SR_nor.sym} 3685 -210 0 0 {name=X1}
+C {devices/lab_wire.sym} 3725 -330 0 0 {name=p11 lab=V
 W=3u}
-C {devices/gnd.sym} 3975 -570 0 0 {name=l2 lab=GND}
-C {devices/lab_wire.sym} 4055 -670 0 1 {name=p15 sig_type=std_logic lab=outc}
-C {designs/inv.sym} 3690 -740 0 0 {name=x2 wx=1u}
-C {designs/inv.sym} 3685 -535 0 0 {name=x3 wx =1u}
-C {devices/lab_wire.sym} 3690 -780 0 0 {name=p16 lab=V
+C {devices/gnd.sym} 3725 -190 0 0 {name=l2 lab=GND}
+C {devices/lab_wire.sym} 3805 -290 0 1 {name=p15 sig_type=std_logic lab=outc}
+C {designs/inv.sym} 3440 -360 0 0 {name=x2 wx=1u}
+C {designs/inv.sym} 3435 -155 0 0 {name=x3 wx =1u}
+C {devices/lab_wire.sym} 3440 -400 0 0 {name=p16 lab=V
 W=3u}
-C {devices/lab_wire.sym} 3685 -575 0 0 {name=p17 lab=V
+C {devices/lab_wire.sym} 3435 -195 0 0 {name=p17 lab=V
 W=3u}
-C {devices/gnd.sym} 3690 -700 0 0 {name=l6 lab=GND}
-C {devices/gnd.sym} 3685 -495 0 0 {name=l7 lab=GND}
-C {devices/lab_wire.sym} 4055 -610 0 1 {name=p18 sig_type=std_logic lab=out}
+C {devices/gnd.sym} 3440 -320 0 0 {name=l6 lab=GND}
+C {devices/gnd.sym} 3435 -115 0 0 {name=l7 lab=GND}
+C {devices/lab_wire.sym} 3805 -230 0 1 {name=p18 sig_type=std_logic lab=out}
 C {designs/strongarm.sym} 3060 -180 0 0 {name=X6}
 C {devices/lab_wire.sym} 3100 -310 0 0 {name=p21 lab=V
 W=3u}
