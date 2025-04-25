@@ -62,8 +62,8 @@ N -390 120 -330 120 {lab=compn}
 N -330 110 -330 120 {lab=compn}
 N -220 -70 -220 0 {lab=clk}
 N -220 0 -50 0 {lab=clk}
-C {cdac.sym} 130 160 1 1 {name=x1 cu=56}
-C {cdac.sym} 130 -160 1 0 {name=x2 cu=56}
+C {cdac.sym} 130 160 1 1 {name=x1 cu=100}
+C {cdac.sym} 130 -160 1 0 {name=x2 cu=100}
 C {devices/ipin.sym} -420 -70 0 0 {name=p2 lab=vinp}
 C {Preamp-Strong-Latch.sym} 340 30 0 0 {name=X5}
 C {sar_logic.sym} 520 250 0 0 {name=X6}
@@ -157,7 +157,7 @@ C {symbols/nfet_03v3.sym} -390 -130 1 0 {name=M1
 L=0.28u
 W=4u
 nf=5
-m=1
+m=5
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
 as="'int((nf+2)/2) * W/nf * 0.18u'"
@@ -171,7 +171,7 @@ C {symbols/pfet_03v3.sym} -390 30 3 0 {name=M2
 L=0.28u
 W=4u
 nf=5
-m=1
+m=5
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
 as="'int((nf+2)/2) * W/nf * 0.18u'"
@@ -189,7 +189,7 @@ C {symbols/nfet_03v3.sym} -420 100 1 0 {name=M3
 L=0.28u
 W=4u
 nf=5
-m=1
+m=5
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
 as="'int((nf+2)/2) * W/nf * 0.18u'"
@@ -203,7 +203,7 @@ C {symbols/pfet_03v3.sym} -420 260 3 0 {name=M4
 L=0.28u
 W=4u
 nf=5
-m=1
+m=5
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
 as="'int((nf+2)/2) * W/nf * 0.18u'"

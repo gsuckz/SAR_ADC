@@ -1,5 +1,4 @@
-v {xschem version=3.4.6RC file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -72,13 +71,17 @@ vd11 d11 0 PULSE( 3.3 0 \{12.2*period\} 10p 10p \{period/2\} \{period\} 1)
 .tran \{0.001*stoptime\} \{stoptime\} uic
 .control
 
-save all
+save v(d0) v(d1) v(d2) v(d3) v(d4) v(d5) v(d6) v(d7) v(d8) v(d9) v(d10) v(d11) v(out)
 run
 *plot sample sampled 
 plot \{vcm-ip\} 
 plot \{(ip-out)\} 
-plot sample d0 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 out 1.65 \{sample/10\} 
-plot sample out
+plot  d0 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 out 1.65 
+*plot sample out
+ set filetype=ascii
+ write ./../../../sim/dac_output.raw
+ set filetype=ascii
+ write ./../../../sim/dac_output.csv v(out)
 .endc
 "}
 C {devices/code_shown.sym} -1155 -270 0 0 {name=Libraries/Includes

@@ -1,5 +1,4 @@
-v {xschem version=3.4.6RC file_version=1.2
-}
+v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {}
 V {}
@@ -10,9 +9,7 @@ lab=V}
 N 1650 -850 1650 -840 {
 lab=clk}
 N 1580 -840 1580 -830 {
-lab=Vin2}
-N 1500 -840 1500 -830 {
-lab=Vin1}
+lab=Vcm}
 N 1740 -420 1740 -320 {lab=#net1}
 N 1740 -260 1750 -260 {lab=#net2}
 N 2660 -50 2700 -50 {lab=GND}
@@ -77,6 +74,10 @@ N 3160 -220 3370 -220 {lab=#net8}
 N 3160 -220 3160 -210 {lab=#net8}
 N 3375 -220 3375 -155 {lab=#net8}
 N 3370 -220 3375 -220 {lab=#net8}
+N 1450 -860 1450 -850 {lab=Vcm}
+N 1450 -850 1570 -850 {lab=Vcm}
+N 1570 -830 1580 -830 {lab=Vcm}
+N 1570 -850 1570 -830 {lab=Vcm}
 C {devices/vsource.sym} 1650 -810 0 0 {name=V3 value="PULSE(0 3.3 0 \{0.05*period\} \{0.05*period\} \{0.5*period\} \{1*period\})"}
 C {devices/gnd.sym} 1650 -780 0 0 {name=l4 lab=GND}
 C {devices/lab_wire.sym} 1650 -850 0 0 {name=p3 sig_type=std_logic lab=clk
@@ -87,14 +88,14 @@ C {devices/lab_wire.sym} 1730 -850 0 0 {name=p7 sig_type=std_logic lab=V
 }
 C {devices/code_shown.sym} 2810 -735 0 0 {name=SPICE1 only_toplevel=false value="
 
-.param period=50n
+.param period=20n
 .param stoptime=\{100*period\}
 .tran \{0.00001*stoptime\} \{stoptime\} uic 
 .control
 save all @m.XM1.m0[p] 
 run
 plot \{vin1 - vin2\} \{vout1 - vout2\} \{clk/3300\} \{vin2/1000\}
-plot \{1000*(vin1 - vin2)\} \{vout1 - vout2\} \{clk/330\} \{vin2\}
+plot \{1000*(vin1 - vin2)\} \{vout1 - vout2\} \{clk/330\} \{vcm\}
 plot vout1 vout2
 plot outc \{1000*(vin1-vin2)\}
 
@@ -111,12 +112,11 @@ value="
 .lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
 "
 spice_ignore=false}
-C {devices/vsource.sym} 1500 -800 0 0 {name=V1 value="PULSE(-.5m .5m 0 \{0.4*period\} \{0.4*period\} \{8*period\} \{16*period\})"}
-C {devices/vsource.sym} 1580 -800 0 0 {name=V2 value="PULSE(0 3.3 0 \{0.4*period\} \{0.4*period\} \{32*period\} \{64*period\})"}
+C {devices/vsource.sym} 1450 -890 0 0 {name=V1 value="PULSE(-.7m .7m 0 \{0.4*period\} \{0.4*period\} \{8*period\} \{16*period\})"}
+C {devices/vsource.sym} 1580 -800 0 0 {name=V2 value="PULSE(1m 3.3 0 \{0.4*period\} \{0.4*period\} \{32*period\} \{64*period\})"}
 C {devices/gnd.sym} 1580 -770 0 0 {name=l3 lab=GND}
-C {devices/lab_wire.sym} 1500 -840 0 0 {name=p1 sig_type=std_logic lab=Vin1}
-C {devices/lab_wire.sym} 1580 -840 0 0 {name=p2 sig_type=std_logic lab=Vin2}
-C {devices/lab_wire.sym} 1500 -770 0 0 {name=p13 sig_type=std_logic lab=Vin2}
+C {devices/lab_wire.sym} 1450 -920 0 0 {name=p1 sig_type=std_logic lab=Vin1}
+C {devices/lab_wire.sym} 1570 -910 0 0 {name=p2 sig_type=std_logic lab=Vin2}
 C {symbols/pfet_03v3.sym} 2600 -480 0 0 {name=M13
 L=0.28u
 W=2u
@@ -357,3 +357,5 @@ C {devices/lab_wire.sym} 3050 -280 0 0 {name=p23 sig_type=std_logic lab=Vout1}
 C {devices/lab_wire.sym} 3050 -200 0 0 {name=p24 sig_type=std_logic lab=clk
 }
 C {devices/lab_wire.sym} 3160 -270 0 1 {name=p26 sig_type=std_logic lab=saout}
+C {devices/vsource.sym} 1570 -880 2 0 {name=V5 value="PULSE(-.7m .7m 0 \{0.4*period\} \{0.4*period\} \{8*period\} \{16*period\})"}
+C {devices/lab_wire.sym} 1520 -850 0 0 {name=p12 sig_type=std_logic lab=Vcm}

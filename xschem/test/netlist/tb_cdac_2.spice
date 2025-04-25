@@ -1,0 +1,159 @@
+** sch_path: /foss/designs/SAR_ADC/xschem/test/tb_cdac_2.sch
+**.subckt tb_cdac_2
+x1 out net2 d2 d4 d11 d0 d8 d7 d9 d10 d3 d5 d6 d1 GND vdd cdac cu=56
+V1 vcm GND 3.3
+V2 vdd GND 3.3
+x2 net1 vdd out vcm GND sample bootstrap_sw
+x3 vdd GND net1 sample inv cl=0.28u wp=0.44u wn=.22u wx=0.22u mx=2
+**** begin user architecture code
+
+
+.param period=100n
+.param stoptime={15*period}
+vsmp sample 0 PULSE(0 3.3 0 10p 10p {period/2} {period} 1)
+vd0 d0 0 PULSE( 3.3 0 {1.2*period} 10p 10p {period/2} {period} 1)
+vd1 d1 0 PULSE( 3.3 0 {2.2*period} 10p 10p {period/2} {period} 1)
+vd2 d2 0 PULSE( 3.3 0 {3.2*period} 10p 10p {period/2} {period} 1)
+vd3 d3 0 PULSE( 3.3 0 {4.2*period} 10p 10p {period/2} {period} 1)
+vd4 d4 0 PULSE( 3.3  0 {5.2*period} 10p 10p {period/2} {period} 1)
+vd5 d5 0 PULSE( 3.3  0 {6.2*period}10p 10p {period/2} {period} 1)
+vd6 d6 0 PULSE( 3.3  0 {7.2*period} 10p 10p {period/2} {period} 1)
+vd7 d7 0 PULSE( 3.3 0 {8.2*period} 10p 10p {period/2} {period} 1)
+vd8 d8 0 PULSE( 3.3  0 {9.2*period} 10p 10p {period/2} {period} 1)
+vd9 d9 0 PULSE( 3.3 0 {10.2*period} 10p 10p {period/2} {period} 1)
+vd10 d10 0 PULSE( 3.3 0 {11.2*period} 10p 10p {period/2} {period} 1)
+vd11 d11 0 PULSE( 3.3 0 {12.2*period} 10p 10p {period/2} {period} 1)
+.tran {0.001*stoptime} {stoptime} uic
+.control
+
+save v(d0) v(d1) v(d2) v(d3) v(d4) v(d5) v(d6) v(d7) v(d8) v(d9) v(d10) v(d11) v(out)
+run
+*plot sample sampled
+plot {vcm-ip}
+plot {(ip-out)}
+plot  d0 d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 out 1.65
+*plot sample out
+ write ./../sim/dac_output.raw
+.endc
+
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_statistical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  cdac.sym # of pins=16
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/cdac.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/cdac.sch
+.subckt cdac xd in d[9] d[7] d[0] d[11] d[3] d[4] d[2] d[1] d[8] d[6] d[5] d[10] gnd vdd  cu=5u
+*.ipin d[0]
+*.ipin d[1]
+*.ipin d[2]
+*.ipin d[3]
+*.ipin d[4]
+*.ipin d[5]
+*.ipin d[6]
+*.ipin d[7]
+*.ipin d[8]
+*.ipin d[9]
+*.ipin d[10]
+*.ipin d[11]
+*.iopin vdd
+*.iopin gnd
+*.iopin in
+*.iopin xd
+x1 in vdd gnd d[0] cdac_line CW={cu} CL={cu} n=1
+x2 in vdd gnd d[1] cdac_line CW={2*cu} CL={2*cu} n=2
+x3 in vdd gnd d[2] cdac_line CW={4*cu} CL={4*cu} n=4
+x4 in vdd gnd d[3] cdac_line CW={8*cu} CL={8*cu} n=8
+x5 in vdd gnd d[4] cdac_line CW={16*cu} CL={16*cu} n=16
+x6 in vdd gnd d[5] cdac_line CW={32*cu} CL={32*cu} n=32
+XCA xd in cap_mim_2f0fF c_width={sqrt((64*cu)/(2*63))*1u} c_length={sqrt((64*cu)/(2*63))*1u} m=1
+x7 xd vdd gnd d[6] cdac_line CW={sqrt(1)*cu} CL={sqrt(1)*cu} n=1
+x8 xd vdd gnd d[7] cdac_line CW={2*cu} CL={2*cu} n=2
+x9 xd vdd gnd d[8] cdac_line CW={4*cu} CL={4*cu} n=4
+x10 xd vdd gnd d[9] cdac_line CW={8*cu} CL={8*cu} n=8
+x11 xd vdd gnd d[10] cdac_line CW={16*cu} CL={16*cu} n=16
+x12 xd vdd gnd d[11] cdac_line CW={32*cu} CL={32*cu} n=32
+XC1 in gnd cap_mim_2f0fF c_width={sqrt(cu/2)*1u} c_length={sqrt(cu/2)*1u} m=1
+.ends
+
+
+* expanding   symbol:  bootstrap_sw.sym # of pins=6
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/bootstrap_sw.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/bootstrap_sw.sch
+.subckt bootstrap_sw clk vdd vout vin vss negclk
+*.iopin vdd
+*.iopin vss
+*.ipin vin
+*.opin vout
+*.iopin clk
+*.iopin negclk
+XM1 vin net3 vout vss nfet_03v3 L=0.28u W=12u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM2 net3 net5 net1 net1 pfet_03v3 L=0.28u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM3 vin negclk net2 vss nfet_03v3 L=0.28u W=0.3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM8 net3 vdd negclk vss nfet_03v3 L=0.28u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM6 net2 clk vss vss nfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+CB net1 net2 0.1p m=1
+XMb net5 negclk net4 net4 pfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XMc net1 vy net4 vss nfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XMb2 vin clk net2 vdd pfet_03v3 L=0.28u W=0.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM4 net5 negclk vin vss nfet_03v3 L=0.28u W=0.3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XMb3 net5 clk vin vdd pfet_03v3 L=0.28u W=0.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XM5 vy vy net1 vss nfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XMc1 vdd net6 vy vss nfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+XMc2 vdd vy net6 vss nfet_03v3 L=0.28u W=0.28u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+CB1 vy clk 1p m=1
+CB2 net6 negclk 1p m=1
+XM7 vout clk vout vss nfet_03v3 L=0.28u W=6u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  inv.sym # of pins=4
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/inv.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/inv.sch
+.subckt inv vdd gnd vout vin  cl=0.28u wp=0.44u wn=0.22u wx=0.22u mx=1
+*.ipin gnd
+*.ipin vdd
+*.ipin vin
+*.opin vout
+XM1 gnd vin vout gnd nfet_03v3 L=0.28u W=Wx nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=mx
+XM2 vdd vin vout vdd pfet_03v3 L=0.28u W={Wx*1.4} nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=mx
+.ends
+
+
+* expanding   symbol:  cdac_line.sym # of pins=4
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/cdac_line.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/cdac_line.sch
+.subckt cdac_line vout vdd gnd vin  CW=1e-6 CL=1e-6 n=1
+*.ipin vdd
+*.ipin gnd
+*.ipin vin
+*.opin vout
+XC1 vout net1 cap_mim_2f0fF c_width={sqrt(CW/2)*1u} c_length={sqrt(CL/2)*1u} m=1
+x3 vdd gnd net1 net2 inv cl=0.28u wp=0.44u wn=0.22u wx=1u mx=n
+x1 vdd gnd net2 vin inv cl=0.28u wp=0.44u wn=0.22u wx=.22u mx=n
+.ends
+
+.GLOBAL GND
+.end

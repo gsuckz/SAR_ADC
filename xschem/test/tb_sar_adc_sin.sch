@@ -12,9 +12,9 @@ C {sar_adc_2.sym} -120 -290 0 0 {name=x1}
 C {devices/code_shown.sym} -895 -345 0 0 {name=NGSPICE
 only_toplevel=false
 value="
-.param period=150n
+.param period=50n
 *.param stoptime=\{48*period\}
-.param stoptime= 2u
+.param stoptime= 10u
 *.param stoptime=.2u
 
 
@@ -48,7 +48,7 @@ plot compn compp compout 1.65
 *plot compout
 .endc
 "}
-C {devices/vsource.sym} -240 -300 0 1 {name=VIN value="SIN(0 1 1meg)"}
+C {devices/vsource.sym} -240 -300 0 1 {name=VIN value="SIN(0 1 100k)"}
 C {devices/ipin.sym} -145 -410 1 0 {name=p1 lab=rst}
 C {devices/ipin.sym} -120 -410 1 0 {name=p2 lab=clk}
 C {devices/opin.sym} 15 -240 2 1 {name=p3 lab=d0}
