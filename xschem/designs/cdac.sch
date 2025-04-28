@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -131,53 +132,53 @@ CW=\{cu\}
 CL=\{cu\}
 n=1}
 C {cdac_line.sym} 210 -90 0 0 {name=x2
-CW=\{2*cu\}
-CL=\{2*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=1}
 C {cdac_line.sym} 340 -90 0 0 {name=x3
-CW=\{4*cu\}
-CL=\{4*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=2}
 C {cdac_line.sym} 470 -90 0 0 {name=x4
-CW=\{8*cu\}
-CL=\{8*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=4}
 C {cdac_line.sym} 600 -90 0 0 {name=x5
-CW=\{16*cu\}
-CL=\{16*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=8}
 C {cdac_line.sym} 730 -90 0 0 {name=x6
-CW=\{32*cu\}
-CL=\{32*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=16}
 C {symbols/cap_mim_2f0fF.sym} 820 -210 1 0 {name=CA
-W=\{sqrt((64*cu)/(2*63))*1u\}
-L=\{sqrt((64*cu)/(2*63))*1u\}
+W=\{sqrt(cu/2)*1u\}
+L=\{sqrt(cu/2)*1u\}
 model=cap_mim_2f0fF
-m=1}
+m=\{64/63\}}
 C {cdac_line.sym} 910 -90 0 0 {name=x7
 CW=\{sqrt(1)*cu\}
 CL=\{sqrt(1)*cu\}
 n=1}
 C {cdac_line.sym} 1040 -90 0 0 {name=x8
-CW=\{2*cu\}
-CL=\{2*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=2}
 C {cdac_line.sym} 1170 -90 0 0 {name=x9
-CW=\{4*cu\}
-CL=\{4*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=4}
 C {cdac_line.sym} 1300 -90 0 0 {name=x10
-CW=\{8*cu\}
-CL=\{8*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=8}
 C {cdac_line.sym} 1430 -90 0 0 {name=x11
-CW=\{16*cu\}
-CL=\{16*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=16}
 C {cdac_line.sym} 1560 -90 0 0 {name=x12
-CW=\{32*cu\}
-CL=\{32*cu\}
+CW=\{cu\}
+CL=\{cu\}
 n=32}
 C {devices/ipin.sym} 50 -100 1 0 {name=p1 lab=d[0]}
 C {devices/ipin.sym} 180 -100 1 0 {name=p2 lab=d[1]}

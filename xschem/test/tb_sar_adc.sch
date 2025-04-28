@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -12,14 +13,14 @@ C {sar_adc_2.sym} -120 -290 0 0 {name=x1}
 C {devices/code_shown.sym} -1065 -65 0 0 {name=NGSPICE
 only_toplevel=false
 value="
-.param period=20n
-.param stoptime=\{27*period\}
+.param period=10n
+.param stoptime=\{30*period\}
 *.param stoptime=.2u
 
 vclk clk 0 PULSE(0 3.3 \{0*period\} \{period*0.05\} \{period*0.05\} \{period/2\} \{period\})
-vr  rst 0 PULSE(0 3.3 \{0*period\}  \{period*0.05\} \{period*0.05\} \{period/2\} \{13*period\} 1)
+vr  rst 0 PULSE(0 3.3 \{0*period\}  \{period*0.05\} \{period*0.05\} \{period/2\} \{period\} 1)
 
-.tran \{0.001*period\} \{stoptime\} uic
+.tran \{0.01*period\} \{stoptime\} uic
 
 .control
 save all

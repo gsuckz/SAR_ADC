@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -94,7 +95,7 @@ N 520 -830 520 -820 {lab=#net3}
 N 410 -1030 510 -1030 {lab=#net4}
 N 510 -1030 510 -880 {lab=#net4}
 N 510 -880 520 -880 {lab=#net4}
-C {devices/vsource.sym} 160 -300 0 0 {name=V1 value="PULSE(-600u 600u 0 100p 100p 40n 80n)"}
+C {devices/vsource.sym} 160 -300 0 0 {name=V1 value="PULSE(-150m 150m 0 100p 100p 40n 80n)"}
 C {devices/vsource.sym} 240 -300 0 0 {name=V2 value="PULSE(0.1 3.2 0 100p 100p 80n 160n)"}
 C {devices/vsource.sym} 310 -300 0 0 {name=V3 value="PULSE(0 3.3 0 100p 100p 5n 10n)"}
 C {devices/gnd.sym} 910 -660 0 0 {name=l1 lab=GND
@@ -131,20 +132,11 @@ plot \{vindiff * 100000\} outcomp \{clk/3.3\}
 *plot i(v5) \{clk/3300\} i(v6)
 plot vpap vpan vin2
 *plot vq
-plot i(v9) i(v8)
+*plot i(v9) i(v8)
 plot \{vpap - vpan\}  \{clk/1000\}
 plot vsap vsan 
-*plot vpap
-*plot vpan
+
 .endc"}
-C {devices/code.sym} 60 -560 0 0 {name=TT_MODELS 
-only_toplevel=true 
-format="tcleval(  @value  )"
-value="
-.include $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/design.ngspice
-.lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice typical
-"
-spice_ignore=false}
 C {Vdiffmeter.sym} 260 -470 0 0 {name=X2}
 C {devices/lab_wire.sym} 160 -270 0 0 {name=p13 sig_type=std_logic lab=Vin2}
 C {SR_nor.sym} 1670 -800 0 0 {name=X3}
@@ -157,7 +149,7 @@ wx=1u}
 C {inv.sym} 1130 -730 0 0 {name=x7 cl=0.28u wp=0.44u wn=0.22u
 wx=0.5u}
 C {strongarm.sym} 850 -780 0 0 {name=X8}
-C {preamp.sym} 530 -760 0 0 {name=X9}
+C {preamp_2.sym} 530 -760 0 0 {name=x9}
 C {devices/lab_wire.sym} 1010 -890 0 0 {name=p14 sig_type=std_logic lab=Vsap}
 C {devices/lab_wire.sym} 950 -730 0 0 {name=p15 sig_type=std_logic lab=Vsan}
 C {devices/lab_wire.sym} 680 -880 0 1 {name=p16 sig_type=std_logic lab=Vpap}
@@ -178,3 +170,18 @@ wx=1u}
 C {devices/vsource.sym} 1080 -1050 0 0 {name=V6 value=0 savecurrent=false}
 C {devices/vsource.sym} 380 -1030 1 0 {name=V8 value=0 savecurrent=false}
 C {devices/vsource.sym} 380 -980 1 0 {name=V9 value=0 savecurrent=false}
+C {devices/code_shown.sym} 715 -520 0 0 {name=Libraries/Includes
+format="tcleval(  @value  )"
+only_toplevel=false
+value="
+.include $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/design.ngspice
+.include [pwd]/designs/sar_logic.spice
+.lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_statistical
+.lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib $::PDK_ROOT/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+.include $::PDK_ROOT/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+"
+spice_ignore=false}

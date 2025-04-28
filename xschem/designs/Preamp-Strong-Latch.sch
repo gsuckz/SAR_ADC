@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -115,4 +116,4 @@ C {devices/iopin.sym} 4390 -3440 0 0 {name=p6 lab=vpn}
 C {inv.sym} 4910 -3330 0 0 {name=x5 cl=0.28u wp=0.44u wn=0.22u
 wx=1u}
 C {strongarm.sym} 4470 -3380 0 0 {name=X6}
-C {preamp.sym} 4100 -3360 0 0 {name=X7}
+C {preamp_2.sym} 4100 -3360 0 0 {name=X7}

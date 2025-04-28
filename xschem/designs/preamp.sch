@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -42,7 +43,7 @@ C {devices/iopin.sym} 315 -410 0 1 {name=p7 lab=Vin2}
 C {devices/iopin.sym} 675 -410 0 0 {name=p9 lab=Vin1}
 C {symbols/nfet_03v3.sym} 350 -320 0 0 {name=M5
 L=.28u
-W=1u
+W=2u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -98,7 +99,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 650 -320 0 1 {name=M10
 L=.28u
-W=1u
+W=2u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -117,14 +118,14 @@ W=3u}
 C {devices/lab_wire.sym} 370 -410 0 0 {name=p26 lab=V
 W=3u}
 C {symbols/cap_mim_2f0fF.sym} 690 -350 0 0 {name=C1
-W=5e-6
-L=5e-6
+W=2e-6
+L=2e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1}
 C {symbols/cap_mim_2f0fF.sym} 130 -340 0 0 {name=C2
-W=5e-6
-L=5e-6
+W=2e-6
+L=2e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1}

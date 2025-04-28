@@ -1,4 +1,5 @@
-v {xschem version=3.4.6 file_version=1.2}
+v {xschem version=3.4.6RC file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -14,7 +15,7 @@ C {symbols/cap_mim_2f0fF.sym} 70 -50 0 0 {name=C1
 W=\{sqrt(CW/2)*1u\}
 L=\{sqrt(CL/2)*1u\}
 model=cap_mim_2f0fF
-m=1}
+m=n}
 C {devices/ipin.sym} 30 160 0 0 {name=p3 lab=vdd}
 C {devices/ipin.sym} 110 160 2 0 {name=p4 lab=gnd}
 C {devices/ipin.sym} 70 340 3 0 {name=p5 lab=vin
