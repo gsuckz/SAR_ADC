@@ -1,0 +1,20 @@
+{
+  "name": "IIC-OSIC-TOOLS Dev Container",
+  "image": "hpretl/iic-osic-tools",
+  "containerName": "iic-osic-tools_vs",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspaces/iic-osic-tools",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/iic-osic-tools,type=bind,consistency=cached",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-vscode.cpptools"
+  ],
+  "runArgs": [
+    "--gpus", "all",
+    "--shm-size=1gb",
+    "--privileged"
+  ]
+}

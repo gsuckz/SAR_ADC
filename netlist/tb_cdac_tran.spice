@@ -1,0 +1,138 @@
+** sch_path: /foss/designs/SAR_ADC/cace/templates/tb_cdac_tran.sch
+**.subckt tb_cdac_tran
+x1 out net2 d9 d7 d0 d11 d3 d4 d2 d1 d8 d6 d5 d10 GND net1 cdac cu=200
+V1 vin GND 0
+V2 net1 GND 3.3
+S1 out vin sample GND SW1
+**** begin user architecture code
+
+
+.param period=200n
+.param stoptime={4097*period}
+.param nbits=12
+.param vref=3.3
+.param lsb={vref/(2**nbits)}
+* Fuente de rampa (0V a 1.8V en 1ms)
+Vramp in 0 PWL(0 0 {stoptime} {vref})
+* ADC Ideal: salida DIGITAL (número entero)
+*B_adc digital_code 0 v = {round(V(in)/lsb)}
+B_adc digital_code 0 v = {floor(V(in)/lsb + 0.5)}
+B_stepped quant 0 v = { floor(V(in)/lsb + 0.5) * lsb }
+* Señales de control d0 (LSB) a d11 (MSB) - ya en voltaje (0V o vref)
+B_d0 d0 0 v = {vref*(V(digital_code) - 2*floor(V(digital_code)/2))}
+B_d1 d1 0 v = {vref*(floor(V(digital_code)/2) - 2*floor(V(digital_code)/4))}
+B_d2 d2 0 v = {vref*(floor(V(digital_code)/4) - 2*floor(V(digital_code)/8))}
+B_d3 d3 0 v = {vref*(floor(V(digital_code)/8) - 2*floor(V(digital_code)/16))}
+B_d4 d4 0 v = {vref*(floor(V(digital_code)/16) - 2*floor(V(digital_code)/32))}
+B_d5 d5 0 v = {vref*(floor(V(digital_code)/32) - 2*floor(V(digital_code)/64))}
+B_d6 d6 0 v = {vref*(floor(V(digital_code)/64) - 2*floor(V(digital_code)/128))}
+B_d7 d7 0 v = {vref*(floor(V(digital_code)/128) - 2*floor(V(digital_code)/256))}
+B_d8 d8 0 v = {vref*(floor(V(digital_code)/256) - 2*floor(V(digital_code)/512))}
+B_d9 d9 0 v = {vref*(floor(V(digital_code)/512) - 2*floor(V(digital_code)/1024))}
+B_d10 d10 0 v = {vref*(floor(V(digital_code)/1024) - 2*floor(V(digital_code)/2048))}
+B_d11 d11 0 v = {vref*(floor(V(digital_code)/2048))}
+vsmp sample 0 PULSE(0 3.3 0 10p 10p {period/2} {period} 1)
+.tran {0.01*period} {stoptime} uic
+.measure tran valor FIND v(out) AT=138n
+.control
+run
+meas tran valor2 FIND v(out) AT=138n
+let n = 1
+let periodo = 100n
+let s_time = 80n
+*let valor_viejo = 0
+while n le 4096
+    let s_time = periodo + s_time
+    meas tran valor{$&n} FIND v(out) AT=s_time
+print s_time
+    let n = n + 1
+end
+plot v(out) v(quant)
+plot {out - quant}
+*plot in
+*plot digital_code
+plot {d0} {d1+10} {d2+20} {d3+30} {d4+40} {d5+50} {d6+60} {d7+70} {d8+80} {d9+90} {d10+100} {d11+110}
+.endc
+
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_statistical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  cdac.sym # of pins=16
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/cdac.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/cdac.sch
+.subckt cdac xd in d[9] d[7] d[0] d[11] d[3] d[4] d[2] d[1] d[8] d[6] d[5] d[10] gnd vdd  cu=5u
+*.ipin d[0]
+*.ipin d[1]
+*.ipin d[2]
+*.ipin d[3]
+*.ipin d[4]
+*.ipin d[5]
+*.ipin d[6]
+*.ipin d[7]
+*.ipin d[8]
+*.ipin d[9]
+*.ipin d[10]
+*.ipin d[11]
+*.iopin vdd
+*.iopin gnd
+*.iopin in
+*.iopin xd
+x1 in vdd gnd d[0] cdac_line CW={cu} CL={cu} n=1
+x2 in vdd gnd d[1] cdac_line CW={2*cu} CL={2*cu} n=1
+x3 in vdd gnd d[2] cdac_line CW={4*cu} CL={4*cu} n=2
+x4 in vdd gnd d[3] cdac_line CW={8*cu} CL={8*cu} n=4
+x5 in vdd gnd d[4] cdac_line CW={16*cu} CL={16*cu} n=8
+x6 in vdd gnd d[5] cdac_line CW={32*cu} CL={32*cu} n=16
+XCA xd in cap_mim_2f0fF c_width={sqrt((64*cu)/(2*63))*1u} c_length={sqrt((64*cu)/(2*63))*1u} m=1
+x7 xd vdd gnd d[6] cdac_line CW={sqrt(1)*cu} CL={sqrt(1)*cu} n=1
+x8 xd vdd gnd d[7] cdac_line CW={2*cu} CL={2*cu} n=2
+x9 xd vdd gnd d[8] cdac_line CW={4*cu} CL={4*cu} n=4
+x10 xd vdd gnd d[9] cdac_line CW={8*cu} CL={8*cu} n=8
+x11 xd vdd gnd d[10] cdac_line CW={16*cu} CL={16*cu} n=16
+x12 xd vdd gnd d[11] cdac_line CW={32*cu} CL={32*cu} n=32
+XC1 in gnd cap_mim_2f0fF c_width={sqrt(cu/2)*1u} c_length={sqrt(cu/2)*1u} m=1
+.ends
+
+
+* expanding   symbol:  cdac_line.sym # of pins=4
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/cdac_line.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/cdac_line.sch
+.subckt cdac_line vout vdd gnd vin  CW=1e-6 CL=1e-6 n=1
+*.ipin vdd
+*.ipin gnd
+*.ipin vin
+*.opin vout
+XC1 vout net1 cap_mim_2f0fF c_width={sqrt(CW/2)*1u} c_length={sqrt(CL/2)*1u} m=1
+x3 vdd gnd net1 net2 inv cl=0.28u wp=0.44u wn=0.22u wx={n*1u} mx=1
+x1 vdd gnd net2 vin inv cl=0.28u wp=0.44u wn=0.22u wx=1u mx=n
+.ends
+
+
+* expanding   symbol:  inv.sym # of pins=4
+** sym_path: /foss/designs/SAR_ADC/xschem/designs/inv.sym
+** sch_path: /foss/designs/SAR_ADC/xschem/designs/inv.sch
+.subckt inv vdd gnd vout vin  cl=0.28u wp=0.44u wn=0.22u wx=0.22u mx=1
+*.ipin gnd
+*.ipin vdd
+*.ipin vin
+*.opin vout
+XM1 gnd vin vout gnd nfet_03v3 L=0.28u W=Wx nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=mx
+XM2 vdd vin vout vdd pfet_03v3 L=0.28u W={Wx*1.4} nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=mx
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+.MODEL SW1 SW( VT=0.9 VH=0.01 RON=0.01 ROFF=10G )
+**** end user architecture code
+.end

@@ -1,0 +1,7 @@
+
+* Circuito simple con fuente de voltaje y resistencia
+V1 in 0 DC 10V
+R1 in out 1k
+
+.tran 1ms 100ms
+.end
